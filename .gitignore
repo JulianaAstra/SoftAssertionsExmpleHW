@@ -1,0 +1,11 @@
+.idea
+build/
+!**/src/main/**
+!**/src/test/**
+
+*.iws
+*.iml
+*.ipr
+
+.gradle
+*.log
