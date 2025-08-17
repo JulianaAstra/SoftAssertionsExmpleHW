@@ -11,9 +11,8 @@ public class SoftAssertionsExampleTest {
 
     @BeforeAll
     static void setupConfig() {
-        Configuration.browserSize = "1980x920";
+        Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://github.com";
-        Configuration.pageLoadStrategy = "eager";
     }
 
     @Test
@@ -24,14 +23,11 @@ public class SoftAssertionsExampleTest {
         $("#wiki-tab")
                 .click();
         $("#wiki-pages-box button.Link--muted")
-                .hover()
                 .click();
 
         $("#wiki-pages-box")
                 .shouldHave(text("SoftAssertions"));
 
-        $("#wiki-pages-box").$("details:last-child")
-                .click();
         $("#wiki-pages-box").$$("a")
                 .findBy(text("SoftAssertions"))
                 .click();
