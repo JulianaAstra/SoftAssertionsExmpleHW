@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
-public class SoftAssertionsExampleTest {
+public class SoftAssertionsPageTest {
     String route;
 
     @BeforeAll
@@ -16,7 +16,7 @@ public class SoftAssertionsExampleTest {
     }
 
     @Test
-    void CheckExamplpeTest() {
+    void CheckExampleTest() {
         route = "/selenide/selenide";
         open(route);
 
