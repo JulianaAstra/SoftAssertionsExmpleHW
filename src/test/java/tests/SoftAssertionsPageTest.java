@@ -16,7 +16,7 @@ public class SoftAssertionsPageTest {
     }
 
     @Test
-    void CheckExampleTest() {
+    void checkExampleTest() {
         route = "/selenide/selenide";
         open(route);
 
