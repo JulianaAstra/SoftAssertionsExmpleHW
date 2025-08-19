@@ -1,10 +1,12 @@
 package tests;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SoftAssertionsPageTest {
     String route;
@@ -18,6 +20,20 @@ public class SoftAssertionsPageTest {
     @Test
     void checkExampleTest() {
         route = "/selenide/selenide";
+
+        String expectedSnippet = """
+                @ExtendWith({SoftAssertsExtension.class})
+                class Tests {
+                  @Test
+                  void test() {
+                    Configuration.assertionMode = SOFT;
+                    open("page.html");
+                
+                    $("#first").should(visible).click();
+                    $("#second").should(visible).click();
+                  }
+                }""";
+
         open(route);
 
         $("#wiki-tab")
@@ -32,13 +48,13 @@ public class SoftAssertionsPageTest {
                 .findBy(text("SoftAssertions"))
                 .click();
 
-        $(".markdown-body")
+        SelenideElement jUnit5Snippet = $(".markdown-body")
                 .$$("h4")
                 .findBy(text("JUnit5"))
                 .closest(".markdown-heading")
                 .sibling(0)
-                .$("pre")
-                .shouldBe(visible)
-                .shouldHave(text("SoftAssertsExtension"));
+                .$("pre");
+
+        jUnit5Snippet.shouldHave(exactText(expectedSnippet));
     }
 }
